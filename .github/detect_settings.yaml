@@ -1,0 +1,4 @@
+domains:
+  trading: |
+    test.dart
+    main.dart
