@@ -15,13 +15,18 @@ jobs:
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
       
       # Example 2
+      - name: Get file names under check
+        id: social-files
+        run: |
+          social_files=$(cat ./.github/social.txt)
+          echo $social_files
+          echo "::set-output name=FILES::$social_files"
       - name: Get changed files in the docs folder
         id: changed-files-specific
         uses: tj-actions/changed-files@v29.0.7
         with:
           files: |
-            directory/test.dart
-            main.dart
+            steps.social-files.outputs.FILES
 
       - name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
