@@ -21,8 +21,9 @@ jobs:
           social_files=$(cat ./.github/social.txt)
           echo "$social_files"
           echo "::set-output name=FILES::"$social_files""
+
       - name: Test files
-        run: echo "${{ steps.social-files.outputs.FILES }}"
+        run: echo -e "${{ steps.social-files.outputs.FILES }}"
 
       - name: Get changed files in the docs folder
         id: changed-files-specific
