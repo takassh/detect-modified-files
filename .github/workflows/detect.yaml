@@ -20,7 +20,9 @@ jobs:
         run: |
           social_files=$(cat ./.github/social.txt)
           echo "$social_files"
-          echo "FILES=$social_files" >> $GITHUB_ENV
+          echo 'FILES<<EOF' >> $GITHUB_ENV
+          echo "$social_files" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - name: Test files
         run: echo "${{ env.FILES }}"
