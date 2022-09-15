@@ -20,7 +20,7 @@ jobs:
         run: |
           social_files=$(cat ./.github/social.txt)
           echo "$social_files"
-          echo "::set-output name=FILES::$(cat ./.github/social.txt)"
+          echo "::set-output name=FILES::"$(cat ./.github/social.txt)""
 
       - name: Test files
         run: echo "${{ steps.social-files.outputs.FILES }}"
