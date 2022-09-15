@@ -18,8 +18,8 @@ jobs:
       - name: Get file names under check
         id: social-files
         run: |
-          social_files=`cat ./.github/social.txt`
-          echo $social_files
+          social_files=$(<./.github/social.txt)
+          echo "$social_files"
           echo "::set-output name=FILES::$social_files"
       - name: Test files
         run: echo "${{ steps.social-files.outputs.FILES }}"
