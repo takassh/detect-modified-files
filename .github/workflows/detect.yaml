@@ -18,7 +18,7 @@ jobs:
       - name: Get file names under check
         id: social-files
         run: |
-          social_files=$(cat ./.github/social.txt)
+          social_files=$(<./.github/social.txt)
           echo $social_files
           echo "::set-output name=FILES::$social_files"
       - name: Test files
@@ -28,8 +28,7 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v29.0.7
         with:
-          files: |
-            steps.social-files.outputs.FILES
+          files: "${{ steps.social-files.outputs.FILES }}"
 
       - name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
