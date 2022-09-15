@@ -29,7 +29,8 @@ jobs:
         uses: tj-actions/changed-files@v29.0.7
         with:
           files: |
-            ${{ steps.social-files.outputs.FILES }}
+            directory/test.dart
+            main.dart
 
       - name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
