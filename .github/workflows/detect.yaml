@@ -7,25 +7,21 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    runs-on: ubuntu-latest
     name: Test changed-files
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 0
       
-      # Example 2
       - name: Get file names under check
         id: social-files
         run: |
-          social_files=$(cat ./.github/social.txt)
-          echo "$social_files"
+          detect_files=$(cat ./.github/detect_files.txt)
+          echo "$detect_files"
           echo 'FILES<<EOF' >> $GITHUB_ENV
-          echo "$social_files" >> $GITHUB_ENV
+          echo "$detect_files" >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-
-      - name: Test files
-        run: echo "${{ env.FILES }}"
 
       - name: Get changed files in the docs folder
         id: changed-files-specific
